@@ -98,7 +98,7 @@ const AllDonationPost = () => {
       <h2 className="text-2xl font-bold mb-4 text-center">Donation List</h2>
       <div className="grid grid-cols-12 md:mx-24 gap-5 mx-0">
         <div className="col-span-12 lg:col-span-8">
-          <table className="min-w-full bg-white border border-gray-300">
+          <table className="min-w-full border border-gray-300">
             <thead>
               <tr>
                 <th className="py-2 px-4 border-b">Title</th>

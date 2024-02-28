@@ -49,7 +49,7 @@ const CreateDonation = () => {
     <div className="flex items-center justify-center h-screen">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-md mx-auto p-4 bg-white shadow-md rounded-md"
+        className="w-full max-w-md mx-auto p-4 shadow-md rounded-md border border-white"
       >
         <h1 className="text-2xl my-10 uppercase">Add a donation</h1>
         <label className="block mb-2 text-sm font-semibold text-gray-600">
@@ -61,7 +61,7 @@ const CreateDonation = () => {
             placeholder="image link..."
             onChange={handleInputChange}
             required
-            className="w-full px-4 py-2 mt-1 text-gray-700 border rounded-md focus:outline-none focus:border-blue-500"
+            className="w-full px-4 py-2 mt-1 text-gray-700 border rounded-md focus:outline-none focus:border-blue-500 bg-white"
           />
         </label>
         <label className="block mb-2 text-sm font-semibold text-gray-600">
@@ -71,7 +71,7 @@ const CreateDonation = () => {
             value={formData.category}
             onChange={handleInputChange}
             required
-            className="w-full px-4 py-2 mt-1 text-gray-700 border rounded-md focus:outline-none focus:border-blue-500"
+            className="w-full px-4 py-2 mt-1 text-gray-700 border rounded-md focus:outline-none focus:border-blue-500 bg-white"
           >
             <option value="">Select Category</option>
             <option value="Health Care">Health Care</option>
@@ -94,7 +94,7 @@ const CreateDonation = () => {
             onChange={handleInputChange}
             maxLength={22}
             required
-            className="w-full px-4 py-2 mt-1 text-gray-700 border rounded-md focus:outline-none focus:border-blue-500"
+            className="w-full px-4 py-2 mt-1 text-gray-700 border rounded-md focus:outline-none focus:border-blue-500 bg-white"
           />
         </label>
         <label className="block mb-2 text-sm font-semibold text-gray-600">
@@ -106,7 +106,7 @@ const CreateDonation = () => {
             placeholder="donation amount..."
             onChange={handleInputChange}
             required
-            className="w-full px-4 py-2 mt-1 text-gray-700 border rounded-md focus:outline-none focus:border-blue-500"
+            className="w-full px-4 py-2 mt-1 text-gray-700 border rounded-md focus:outline-none focus:border-blue-500 bg-white"
           />
         </label>
         <label className="block mb-2 text-sm font-semibold text-gray-600">
@@ -117,7 +117,7 @@ const CreateDonation = () => {
             placeholder="donation description..."
             onChange={handleInputChange}
             required
-            className="w-full px-4 py-2 mt-1 text-gray-700 border rounded-md focus:outline-none focus:border-blue-500"
+            className="w-full px-4 py-2 mt-1 text-gray-700 border rounded-md focus:outline-none focus:border-blue-500 bg-white"
           />
         </label>
         <button

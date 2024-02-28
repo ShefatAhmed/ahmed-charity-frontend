@@ -17,7 +17,7 @@ const DonationPost = () => {
         {donations.map((donation: any) => (
           <div
             key={donation._id}
-            className="max-w-md mx-auto bg-white rounded-xl overflow-hidden shadow-lg col-span-12 md:col-span-6 lg:col-span-4 w-[300px]"
+            className="max-w-md mx-auto rounded-xl overflow-hidden shadow-lg col-span-12 md:col-span-6 lg:col-span-4 w-[300px]"
           >
             <img
               className="w-full h-56 object-cover"
@@ -27,10 +27,8 @@ const DonationPost = () => {
             <div className="p-6 flex flex-col justify-evenly">
               <h1 className="text-xl font-semibold mb-2">{donation.title}</h1>
               <div className="flex justify-between mb-2">
-                <p className="text-sm text-gray-600 mr-2">
-                  {donation.category}
-                </p>
-                <p className="text-sm text-gray-600">${donation.amount}</p>
+                <p className="text-sm mr-2">{donation.category}</p>
+                <p className="text-sm">${donation.amount}</p>
               </div>
               <button className="w-full btn glass bg-teal-500 rounded-lg text-white px-10 hover:bg-teal-800 text-lg">
                 <Link to={`/donations/${donation._id}`}>View Detail</Link>

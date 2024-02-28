@@ -21,33 +21,33 @@ const Register = () => {
     <div className="flex items-center justify-center h-screen">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-md mx-auto p-4 bg-white shadow-md rounded-md"
+        className="w-full max-w-md mx-auto p-4 shadow-md rounded-md border border-white"
       >
         <h1 className="text-2xl my-10 uppercase">Please register here...</h1>
-        <label className="block mb-2 text-sm font-semibold text-gray-600">
+        <label className="block mb-2 text-sm font-semibold">
           Name:
           <input
             type="text"
             {...register("name", { required: "Name is required" })}
-            className="w-full px-4 py-2 mt-1 text-gray-700 border rounded-md focus:outline-none focus:border-blue-500"
+            className="w-full px-4 py-2 mt-1 text-gray-700 border rounded-md focus:outline-none focus:border-blue-500 bg-white"
           />
         </label>
 
-        <label className="block mb-2 text-sm font-semibold text-gray-600">
+        <label className="block mb-2 text-sm font-semibold">
           Email:
           <input
             type="email"
             {...register("email", { required: "Email is required" })}
-            className="w-full px-4 py-2 mt-1 text-gray-700 border rounded-md focus:outline-none focus:border-blue-500"
+            className="w-full px-4 py-2 mt-1 text-gray-700 border rounded-md focus:outline-none focus:border-blue-500 bg-white"
           />
         </label>
 
-        <label className="block mb-2 text-sm font-semibold text-gray-600">
+        <label className="block mb-2 text-sm font-semibold">
           Password:
           <input
             type="password"
             {...register("password", { required: "Password is required" })}
-            className="w-full px-4 py-2 mt-1 text-gray-700 border rounded-md focus:outline-none focus:border-blue-500"
+            className="w-full px-4 py-2 mt-1 text-gray-700 border rounded-md focus:outline-none focus:border-blue-500 bg-white"
           />
         </label>
 

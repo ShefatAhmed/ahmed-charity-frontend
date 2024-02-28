@@ -14,7 +14,6 @@ const Login = () => {
   console.log(data);
   console.log(error);
   const onSubmit = async (data: FieldValues) => {
-    console.log(data);
     const userInfo = {
       email: data.email,
       password: data.password,
@@ -28,13 +27,13 @@ const Login = () => {
     <div className="flex items-center justify-center h-screen">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-md mx-auto p-4 bg-white shadow-md rounded-md"
+        className="w-full max-w-md mx-auto p-4 shadow-md rounded-md border border-white"
       >
         <h1 className="text-2xl my-10 uppercase">Please login here...</h1>
         <div className="mb-4">
           <label
             htmlFor="email"
-            className="block text-sm font-semibold text-gray-600"
+            className="block text-sm font-semibold"
           >
             Email:
           </label>
@@ -43,13 +42,14 @@ const Login = () => {
             id="email"
             {...register("email")}
             required
-            className="w-full px-4 py-2 mt-1 text-gray-700 border rounded-md focus:outline-none focus:border-blue-500"
+            className="w-full px-4 py-2 mt-1 text-gray-700 border rounded-md focus:outline-none focus:border-blue-500 bg-white"
+            placeholder="enter your email..."
           />
         </div>
         <div className="mb-4">
           <label
             htmlFor="password"
-            className="block text-sm font-semibold text-gray-600"
+            className="block text-sm font-semibold"
           >
             Password:
           </label>
@@ -58,12 +58,13 @@ const Login = () => {
             id="password"
             {...register("password")}
             required
-            className="w-full px-4 py-2 mt-1 text-gray-700 border rounded-md focus:outline-none focus:border-blue-500"
+            className="w-full px-4 py-2 mt-1 text-gray-700 border rounded-md focus:outline-none focus:border-blue-500 bg-white"
+            placeholder="enter your password..."
           />
         </div>
         <Button
           htmlType="submit"
-          className="w-full bg-teal-500 btn font-extrabold hover:bg-red-400"
+          className="w-full bg-teal-500 btn font-extrabold hover:bg-red-400 text-white text-lg"
         >
           Submit
         </Button>
