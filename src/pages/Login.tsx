@@ -1,0 +1,87 @@
+import { Button } from "antd";
+import { FieldValues, useForm } from "react-hook-form";
+import { useLoginMutation } from "../redux/features/auth/authApi";
+import { useAppDispatch } from "../redux/hooks";
+import { setUser } from "../redux/features/auth/authSlice";
+import { verifyToken } from "../utils/verifyToken";
+import { Link, useNavigate } from "react-router-dom";
+
+const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { register, handleSubmit } = useForm();
+  const [login, { data, error }] = useLoginMutation();
+  console.log(data);
+  console.log(error);
+  const onSubmit = async (data: FieldValues) => {
+    console.log(data);
+    const userInfo = {
+      email: data.email,
+      password: data.password,
+    };
+    const res = await login(userInfo).unwrap();
+    const user = verifyToken(res.token);
+    dispatch(setUser({ user: user, token: res.token }));
+    navigate("/");
+  };
+  return (
+    <div className="flex items-center justify-center h-screen">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-full max-w-md mx-auto p-4 bg-white shadow-md rounded-md"
+      >
+        <h1 className="text-2xl my-10 uppercase">Please login here...</h1>
+        <div className="mb-4">
+          <label
+            htmlFor="email"
+            className="block text-sm font-semibold text-gray-600"
+          >
+            Email:
+          </label>
+          <input
+            type="text"
+            id="email"
+            {...register("email")}
+            required
+            className="w-full px-4 py-2 mt-1 text-gray-700 border rounded-md focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            htmlFor="password"
+            className="block text-sm font-semibold text-gray-600"
+          >
+            Password:
+          </label>
+          <input
+            type="password"
+            id="password"
+            {...register("password")}
+            required
+            className="w-full px-4 py-2 mt-1 text-gray-700 border rounded-md focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <Button
+          htmlType="submit"
+          className="w-full bg-teal-500 btn font-extrabold hover:bg-red-400"
+        >
+          Submit
+        </Button>
+        <hr className="my-2" />
+        <p className="text-center font-extrabold">or</p>
+        <h1 className="text-sm italic text-center mt-2">
+          if you don't have an account please{" "}
+          <Link
+            to="/register"
+            className="text-red-500 underline font-extrabold hover:text-teal-500"
+          >
+            register
+          </Link>{" "}
+          now
+        </h1>
+      </form>
+    </div>
+  );
+};
+
+export default Login;
