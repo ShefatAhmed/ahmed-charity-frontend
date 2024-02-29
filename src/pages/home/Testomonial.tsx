@@ -1,51 +1,8 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useGetAllTestimonialQuery } from "../../redux/features/testimonial/testimonialApi";
 const Testomonial = () => {
-  const testimonials = [
-    {
-      id: 1,
-      name: "Anastasia Stone",
-      image: "https://i.postimg.cc/9fk4BJY8/Untitled.jpg",
-      text: "I am proud to support this wonderful cause. The impact it has on the community is truly inspiring. Keep up the fantastic work, and I'm happy to contribute to making a positive difference.",
-      price: "$99.99 M",
-    },
-    {
-      id: 2,
-      name: "John Doe",
-      image: "https://i.postimg.cc/NG5DYznM/Untitled.jpg",
-      text: "It's heartening to see the dedication of the team behind this initiative. My donation is a small token of appreciation for the meaningful changes you're bringing to people's lives. Wishing you continued success!",
-      price: "$129.99 M",
-    },
-    {
-      id: 3,
-      name: "Emily White",
-      image: "https://i.postimg.cc/CKSZP3jK/Untitled.jpg",
-      text: "I believe in the power of collective efforts to bring about change. This organization's commitment to transparency and making a real impact convinced me to contribute. Let's work together for a brighter future.",
-      price: "$89.99 M",
-    },
-    {
-      id: 4,
-      name: "Mark Johnson",
-      image: "https://i.postimg.cc/zfgd7RFN/Untitled.jpg",
-      text: "Being part of something bigger than ourselves is fulfilling. This cause resonates with my values, and I'm honored to contribute. Every donation, no matter the size, contributes to a larger, positive outcome.",
-      price: "$149.99 M",
-    },
-    {
-      id: 5,
-      name: "Sophia Davis",
-      image: "https://i.postimg.cc/tgZcccyL/Untitled.jpg",
-      text: "The work this organization does is truly commendable. I've seen firsthand the positive changes it brings to communities. My donation is a gesture of support for your tireless efforts in making the world a better place.",
-      price: "$109.99 M",
-    },
-    {
-      id: 6,
-      name: "Michael Smith",
-      image: "https://i.postimg.cc/JzPm8vf0/Untitled.jpg",
-      text: "I've been following this cause for a while, and the impact it has is undeniable. Donating is a way for me to contribute to a cause I deeply care about. Let's continue spreading hope and making a difference together.",
-      price: "$119.99 M",
-    },
-  ];
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -56,21 +13,27 @@ const Testomonial = () => {
     autoplaySpeed: 3000,
     pauseOnHover: true,
   };
+  const { data: testimonials } = useGetAllTestimonialQuery(undefined);
+  console.log(testimonials);
+  if (!testimonials) {
+    return <p>No testimonials available</p>;
+  }
+
   return (
     <div className="py-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center uppercase">
           <h3 className="text-2xl">Testimonials</h3>
           <h2 className="text-3xl font-extrabold">
-            Our top doner's what the say
+            Our top donors, what they say
           </h2>
         </div>
         <div className="mt-5">
           <Slider {...sliderSettings}>
-            {testimonials.map((testimonial) => (
+            {testimonials.map((testimonial: any) => (
               <figure
                 className="bg-white shadow-lg overflow-hidden rotate-1 hover:rotate-0 transition duration-200"
-                key={testimonial.id}
+                key={testimonial._id}
               >
                 <blockquote className="p-8">
                   <div className="mb-2 text-teal-500">
@@ -78,7 +41,7 @@ const Testomonial = () => {
                       <path d="M13.415.001C6.07 5.185.887 13.681.887 23.041c0 7.632 4.608 12.096 9.936 12.096 5.04 0 8.784-4.032 8.784-8.784 0-4.752-3.312-8.208-7.632-8.208-.864 0-2.016.144-2.304.288.72-4.896 5.328-10.656 9.936-13.536L13.415.001zm24.768 0c-7.2 5.184-12.384 13.68-12.384 23.04 0 7.632 4.608 12.096 9.936 12.096 4.896 0 8.784-4.032 8.784-8.784 0-4.752-3.456-8.208-7.776-8.208-.864 0-1.872.144-2.16.288.72-4.896 5.184-10.656 9.792-13.536L38.183.001z"></path>
                     </svg>
                   </div>
-                  <p className="font-bold text-lg">{testimonial.text}</p>
+                  <p className="font-bold text-lg">{testimonial.description}</p>
                 </blockquote>
                 <div className="flex items-center justify-between px-8 py-4 bg-gradient-to-br from-teal-500 to-emerald-500">
                   <div className="flex items-center gap-5">
@@ -91,7 +54,7 @@ const Testomonial = () => {
                     </div>
                     <figcaption className="text-white font-semibold">
                       <div>{testimonial.name}</div>
-                      <div className="opacity-70">{testimonial.price}</div>
+                      <div className="opacity-70">${testimonial.amount} M</div>
                     </figcaption>
                   </div>
                   <div className="text-white/50 hover:text-white/80 transition duration-200">

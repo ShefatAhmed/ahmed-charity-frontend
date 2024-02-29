@@ -37,7 +37,7 @@ const Navbar = () => {
       ?.setAttribute("data-theme", localTheme as string);
   }, [theme]);
   return (
-    <nav className="px-2 mx-auto flex justify-between items-center shadow-lg">
+    <nav className="px-2 mx-auto flex justify-between items-center shadow-lg overflow-x-auto">
       <NavLink to="/" className="flex items-center">
         <img
           src="https://i.postimg.cc/jqytcJxV/1.png"

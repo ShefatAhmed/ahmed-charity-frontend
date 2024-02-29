@@ -12,6 +12,7 @@ import DonationDetail from "../pages/home/DonationDetail";
 import ProtectedRoute from "../components/layout/ProtectedRoute";
 import Leaderboard from "../pages/Leaderboard/Leaderboard";
 import Community from "../pages/Community/Community";
+import CreateTestimonial from "../pages/dashboard/CreateTestimonial/CreateTestimonial";
 
 const router = createBrowserRouter([
   {
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
       {
         path: "create-donation",
         element: <CreateDonation />,
+      },
+      {
+        path: "create-testimonial",
+        element: <CreateTestimonial />,
       },
     ],
   },

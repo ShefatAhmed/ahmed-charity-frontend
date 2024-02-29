@@ -80,7 +80,7 @@ const Community = () => {
                   <h1 className="font-bold uppercase">{comment.name}.</h1>
                 )}
                 {comment.date && (
-                  <p className="text-gray-500">{comment.date}</p>
+                  <p>{comment.date}</p>
                 )}
               </div>
               {comment.heading && (
@@ -89,7 +89,7 @@ const Community = () => {
                 </h1>
               )}
               {comment.comment && (
-                <p className="text-gray-700">{comment.comment} :)</p>
+                <p>{comment.comment} :)</p>
               )}
               {comment.comment && <hr className="my-3" />}
             </div>
