@@ -11,6 +11,7 @@ import CreateDonation from "../pages/dashboard/CreateDonation/CreateDonation";
 import DonationDetail from "../pages/home/DonationDetail";
 import ProtectedRoute from "../components/layout/ProtectedRoute";
 import Leaderboard from "../pages/Leaderboard/Leaderboard";
+import Community from "../pages/Community/Community";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/leaderboard",
         element: <Leaderboard />,
+      },
+      {
+        path: "/community",
+        element: <Community />,
       },
       {
         path: "/register",

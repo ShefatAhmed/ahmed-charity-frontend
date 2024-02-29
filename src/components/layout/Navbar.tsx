@@ -60,6 +60,13 @@ const Navbar = () => {
         >
           Leaderboard
         </NavLink>
+        <NavLink
+          to="/community"
+          onClick={toggleClose}
+          className="hover:underline"
+        >
+          Community
+        </NavLink>
         {token && (
           <NavLink
             to="/dashboard"
@@ -124,6 +131,20 @@ const Navbar = () => {
             onClick={toggleClose}
           >
             All Donations
+          </NavLink>
+          <NavLink
+            to="/leaderboard"
+            onClick={toggleClose}
+            className="block px-4 py-2 text-gray-800 hover:bg-gray-200 font-extrabold"
+          >
+            Leaderboard
+          </NavLink>
+          <NavLink
+            to="/community"
+            onClick={toggleClose}
+            className="block px-4 py-2 text-gray-800 hover:bg-gray-200 font-extrabold"
+          >
+            Community
           </NavLink>
           {token && (
             <NavLink
