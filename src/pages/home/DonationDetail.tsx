@@ -100,6 +100,9 @@ const DonationDetail = () => {
             <p className="text-center font-extrabold text-xl mb-2">
               Confirm your donation for {donation.title}?
             </p>
+            <p className="text-center font-extrabold text-red-500">
+              total: $ {donation.amount}
+            </p>
             <div className="flex flex-col gap-1">
               <div className="flex gap-2 flex-col mt-5">
                 <input
@@ -112,7 +115,7 @@ const DonationDetail = () => {
                       name: e.target.value,
                     }))
                   }
-                  className="border p-2 rounded-lg"
+                  className="hidden"
                 />
                 <input
                   type="email"
@@ -124,7 +127,7 @@ const DonationDetail = () => {
                       email: e.target.value,
                     }))
                   }
-                  className="border p-2 rounded-lg"
+                  className="hidden"
                 />
                 <input
                   type="text"
@@ -136,7 +139,7 @@ const DonationDetail = () => {
                       amount: e.target.value,
                     }))
                   }
-                  className="border p-2 rounded-lg"
+                  className="hidden"
                 />
                 <button
                   onClick={handleConfirmDonate}

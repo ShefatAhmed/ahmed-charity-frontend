@@ -10,6 +10,7 @@ import AllDonations from "../pages/AllDonations/AllDonations";
 import CreateDonation from "../pages/dashboard/CreateDonation/CreateDonation";
 import DonationDetail from "../pages/home/DonationDetail";
 import ProtectedRoute from "../components/layout/ProtectedRoute";
+import Leaderboard from "../pages/Leaderboard/Leaderboard";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/donations/:id",
-        element: <DonationDetail />,
+        element: (
+          <ProtectedRoute>
+            <DonationDetail />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/leaderboard",
+        element: <Leaderboard />,
       },
       {
         path: "/register",

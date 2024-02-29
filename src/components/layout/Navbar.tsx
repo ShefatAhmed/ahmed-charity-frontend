@@ -53,6 +53,13 @@ const Navbar = () => {
         >
           All Donations
         </NavLink>
+        <NavLink
+          to="/leaderboard"
+          onClick={toggleClose}
+          className="hover:underline"
+        >
+          Leaderboard
+        </NavLink>
         {token && (
           <NavLink
             to="/dashboard"

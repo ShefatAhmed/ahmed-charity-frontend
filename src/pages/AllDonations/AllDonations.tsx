@@ -25,10 +25,8 @@ const AllDonations = () => {
             <div className="p-6">
               <h1 className="text-xl font-semibold mb-2">{donation.title}</h1>
               <div className="flex justify-between mb-2">
-                <p className="text-sm text-gray-600 mr-2">
-                  {donation.category}
-                </p>
-                <p className="text-sm text-gray-600">${donation.amount}</p>
+                <p className="text-sm mr-2">{donation.category}</p>
+                <p className="text-sm">${donation.amount}</p>
               </div>
               <button className="w-full btn glass bg-teal-500 rounded-lg text-white px-10 hover:bg-teal-800 text-lg">
                 <Link to={`/donations/${donation._id}`}>View Detail</Link>
