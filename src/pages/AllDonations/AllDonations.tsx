@@ -7,7 +7,7 @@ const AllDonations = () => {
   const donations = data || [];
 
   return (
-    <div>
+    <div className="overflow-hidden">
       <h1 className="text-center text-2xl font-extrabold uppercase my-5">
         Here is all donations
       </h1>
@@ -15,7 +15,7 @@ const AllDonations = () => {
         {donations.map((donation: any) => (
           <div
             key={donation._id}
-            className="max-w-md mx-auto bg-white rounded-xl overflow-hidden shadow-lg col-span-12 md:col-span-6 lg:col-span-4"
+            className="max-w-md mx-auto rounded-xl overflow-hidden shadow-lg col-span-12 md:col-span-6 lg:col-span-4 w-[400px] border border-white"
           >
             <img
               className="w-full h-56 object-cover"

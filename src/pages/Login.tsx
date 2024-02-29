@@ -16,6 +16,8 @@ const Login = () => {
   const onSubmit = async (data: FieldValues) => {
     const userInfo = {
       email: data.email,
+      name: data.name,
+      amount: data.amount,
       password: data.password,
     };
     const res = await login(userInfo).unwrap();
@@ -31,10 +33,7 @@ const Login = () => {
       >
         <h1 className="text-2xl my-10 uppercase">Please login here...</h1>
         <div className="mb-4">
-          <label
-            htmlFor="email"
-            className="block text-sm font-semibold"
-          >
+          <label htmlFor="email" className="block text-sm font-semibold">
             Email:
           </label>
           <input
@@ -47,10 +46,7 @@ const Login = () => {
           />
         </div>
         <div className="mb-4">
-          <label
-            htmlFor="password"
-            className="block text-sm font-semibold"
-          >
+          <label htmlFor="password" className="block text-sm font-semibold">
             Password:
           </label>
           <input

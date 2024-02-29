@@ -2,6 +2,13 @@ import { Link, useParams } from "react-router-dom";
 import { useGetAllDonationQuery } from "../../redux/features/donation/donationApi";
 import { useState } from "react";
 import Modal from "react-modal";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import {
+  selectCurrentUser,
+  setUser,
+  useCurrentToken,
+} from "../../redux/features/auth/authSlice";
+import { useUpdateUserMutation } from "../../redux/features/auth/authApi";
 const modalStyles = {
   content: {
     width: "300px",
@@ -13,17 +20,40 @@ const modalStyles = {
 const DonationDetail = () => {
   const { id } = useParams();
   const { data }: any = useGetAllDonationQuery(undefined);
-
   const donation = data ? data.find((d: any) => d._id === id) : null;
 
   const [confirmationModalOpen, setConfirmationModalOpen] = useState(false);
+  const userData = useAppSelector(selectCurrentUser);
+  const token = useAppSelector(useCurrentToken);
+  const amount = userData?.amount;
+
+  const [donationInfo, setDonationInfo] = useState({
+    name: userData?.name || "",
+    email: userData?.email || "",
+  });
 
   const handleDonateNowClick = () => {
     setConfirmationModalOpen(true);
   };
 
-  const handleConfirmDonate = () => {
-    setConfirmationModalOpen(false);
+  const [updateUserMutation] = useUpdateUserMutation();
+  const dispatch = useAppDispatch();
+
+  const handleConfirmDonate = async () => {
+    const newAmount = amount + donation.amount;
+    console.log(amount);
+    try {
+      const { data: updatedUserData }: any = await updateUserMutation({
+        email: userData?.email,
+        amount: newAmount,
+      });
+      console.log("Updated User Data:", updatedUserData);
+
+      dispatch(setUser({ user: updatedUserData, token: token }));
+      setConfirmationModalOpen(false);
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
   };
 
   return (
@@ -71,12 +101,50 @@ const DonationDetail = () => {
               Confirm your donation for {donation.title}?
             </p>
             <div className="flex flex-col gap-1">
-              <button
-                onClick={handleConfirmDonate}
-                className="glass bg-teal-500 rounded-lg text-white px-10 hover:bg-teal-800 text-lg"
-              >
-                <Link to="/dashboard">Yes, Donate Now</Link>
-              </button>
+              <div className="flex gap-2 flex-col mt-5">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  value={donationInfo.name}
+                  onChange={(e) =>
+                    setDonationInfo((prev) => ({
+                      ...prev,
+                      name: e.target.value,
+                    }))
+                  }
+                  className="border p-2 rounded-lg"
+                />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={donationInfo.email}
+                  onChange={(e) =>
+                    setDonationInfo((prev) => ({
+                      ...prev,
+                      email: e.target.value,
+                    }))
+                  }
+                  className="border p-2 rounded-lg"
+                />
+                <input
+                  type="text"
+                  placeholder="Amount"
+                  value={donation.amount}
+                  onChange={(e) =>
+                    setDonationInfo((prev) => ({
+                      ...prev,
+                      amount: e.target.value,
+                    }))
+                  }
+                  className="border p-2 rounded-lg"
+                />
+                <button
+                  onClick={handleConfirmDonate}
+                  className="glass bg-teal-500 rounded-lg text-white px-10 hover:bg-teal-800 text-lg"
+                >
+                  <Link to="/dashboard">Yes, Donate Now</Link>
+                </button>
+              </div>
               <h1 className="text-center">or</h1>
               <button
                 onClick={() => setConfirmationModalOpen(false)}

@@ -3,7 +3,7 @@ export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({
     baseUrl:
-      "https://l2-b2-frontend-path-assignment-6-server-starter-pack-zeta.vercel.app",
+      "http://localhost:5000",
     credentials: "include",
   }),
   endpoints: () => ({}),

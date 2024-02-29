@@ -9,7 +9,14 @@ const authApi = baseApi.injectEndpoints({
         body: userInfo,
       }),
     }),
+    updateUser: builder.mutation({
+      query: (updatedDonorsInfo) => ({
+        url: `/api/auth/donors-user/${updatedDonorsInfo.email}`,
+        method: "PUT",
+        body: updatedDonorsInfo,
+      }),
+    }),
   }),
 });
 
-export const { useLoginMutation } = authApi;
+export const { useLoginMutation, useUpdateUserMutation } = authApi;

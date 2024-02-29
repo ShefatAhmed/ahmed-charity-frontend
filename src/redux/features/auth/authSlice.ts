@@ -3,13 +3,19 @@ import { RootState } from "../../store";
 
 export type TUser = {
   email: string;
+  name: string;
+  amount: number;
   iat: number;
   exp: number;
 };
 
+type TToken = {
+  token: string;
+};
+
 type TAuthState = {
   user: null | TUser;
-  token: null | string;
+  token: null | TToken;
 };
 const initialState: TAuthState = {
   user: null,
