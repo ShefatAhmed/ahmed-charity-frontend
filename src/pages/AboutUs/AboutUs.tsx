@@ -6,6 +6,43 @@ const AboutUs = () => {
 
   return (
     <div className="max-w-3xl mx-auto mt-16 px-4 sm:px-6 md:px-8">
+      <section id="ahmedCharity" className="mt-8">
+        <h2 className="text-4xl font-bold mb-4">Welcome to Ahmed Charity</h2>
+        <p>
+          At Ahmed Charity, we are dedicated to making a positive impact on the
+          world through charitable contributions and community service. Our
+          mission is to extend a helping hand to those in need and create a
+          better, more compassionate world.
+        </p>
+        <p>
+          Your support allows us to carry out various initiatives, including
+          providing assistance to individuals and communities facing hardships.
+          Together, we can make a difference in the lives of those who need it
+          most.
+        </p>
+        <p>
+          Thank you for being a part of our mission to bring hope, relief, and
+          positive change to the world.
+        </p>
+
+        <div className="mt-8">
+          <h3 className="text-2xl font-bold mb-4">Contact Us</h3>
+          <p>
+            <strong>Email:</strong> info@ahmedcharity.org
+          </p>
+          <p>
+            <strong>Phone:</strong> +123-456-7890
+          </p>
+        </div>
+
+        <div className="mt-8">
+          <h3 className="text-2xl font-bold mb-4">Visit Us</h3>
+          <p>
+            <strong>Address:</strong> 123 walking Street, Dhaka, Bangladesh
+          </p>
+        </div>
+      </section>
+      <hr className="my-10" />
       <section id="ourVolunteers" className="mt-8">
         <div className="flex justify-between items-center mb-8">
           <h3 className="text-4xl font-bold mb-4">Our Volunteers</h3>

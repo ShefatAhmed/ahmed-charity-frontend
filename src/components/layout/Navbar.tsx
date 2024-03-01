@@ -74,6 +74,13 @@ const Navbar = () => {
         >
           Volunteer
         </NavLink>
+        <NavLink
+          to="/about-us"
+          onClick={toggleClose}
+          className="hover:underline"
+        >
+          About US
+        </NavLink>
         {token && (
           <NavLink
             to="/dashboard"
@@ -182,6 +189,13 @@ const Navbar = () => {
             className="block px-4 py-2 text-gray-800 hover:bg-gray-200 font-extrabold"
           >
             Volunteer
+          </NavLink>
+          <NavLink
+            to="/about-us"
+            onClick={toggleClose}
+            className="block px-4 py-2 text-gray-800 hover:bg-gray-200 font-extrabold"
+          >
+            About Us
           </NavLink>
           {token && (
             <NavLink
