@@ -37,7 +37,7 @@ const Navbar = () => {
       ?.setAttribute("data-theme", localTheme as string);
   }, [theme]);
   return (
-    <nav className="px-2 mx-auto flex justify-between items-center shadow-lg overflow-x-auto">
+    <nav className="mx-auto flex justify-between items-center shadow-lg overflow-x-auto">
       <NavLink to="/" className="flex items-center">
         <img
           src="https://i.postimg.cc/jqytcJxV/1.png"
@@ -45,7 +45,7 @@ const Navbar = () => {
           alt=""
         />
       </NavLink>
-      <ul className="hidden sm:flex sm:justify-between sm:items-center space-x-10 text-lg font-extrabold mr-4">
+      <ul className="hidden sm:flex sm:justify-between sm:items-center space-x-10 font-extrabold mr-4">
         <NavLink
           to="/donations"
           onClick={toggleClose}
