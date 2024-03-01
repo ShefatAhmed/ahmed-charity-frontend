@@ -1,5 +1,6 @@
 import { Check } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 const ExtraSecond = () => {
   const backgroundImage = {
     backgroundImage:
@@ -55,9 +56,12 @@ const ExtraSecond = () => {
               donation.
             </p>
           </div>
-          <button className="btn glass bg-teal-500 rounded-full text-white px-10 hover:bg-teal-800 text-lg uppercase">
+          <Link
+            to="/volunteer"
+            className="btn glass bg-teal-500 rounded-full text-white px-10 hover:bg-teal-800 text-lg uppercase"
+          >
             Join as a volunter
-          </button>
+          </Link>
         </div>
       </motion.div>
     </div>

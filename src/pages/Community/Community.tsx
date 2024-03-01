@@ -6,6 +6,7 @@ import {
 } from "../../redux/features/coummunity/coummunityApi";
 import { useAppSelector } from "../../redux/hooks";
 import { selectCurrentUser } from "../../redux/features/auth/authSlice";
+import Swal from "sweetalert2";
 const modalStyles = {
   content: {
     width: "300px",
@@ -44,17 +45,30 @@ const Community = () => {
   const [addCommentMutation] = useAddCommentMutation();
 
   const handleSubmit = async () => {
-    const response = await addCommentMutation({
-      name: userData?.name,
-      heading: heading,
-      comment: comment,
-      date: currentDate,
-    });
-    addCommentMutation(response);
-    setHeading("");
-    setComment("");
-    refetch();
-    handleCloseModal();
+    try {
+      const response = await addCommentMutation({
+        name: userData?.name,
+        heading: heading,
+        comment: comment,
+        date: currentDate,
+      });
+      Swal.fire({
+        icon: "success",
+        title: "Comment Added",
+        text: "Your comment has been added successfully.",
+      });
+      addCommentMutation(response);
+      setHeading("");
+      setComment("");
+      refetch();
+      handleCloseModal();
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "There was an error adding your comment. Please try again.",
+      });
+    }
   };
 
   return (
@@ -79,18 +93,14 @@ const Community = () => {
                 {comment.name && (
                   <h1 className="font-bold uppercase">{comment.name}.</h1>
                 )}
-                {comment.date && (
-                  <p>{comment.date}</p>
-                )}
+                {comment.date && <p>{comment.date}</p>}
               </div>
               {comment.heading && (
                 <h1 className="text-2xl font-semibold mb-2">
                   {comment.heading}
                 </h1>
               )}
-              {comment.comment && (
-                <p>{comment.comment} :)</p>
-              )}
+              {comment.comment && <p>{comment.comment} :)</p>}
               {comment.comment && <hr className="my-3" />}
             </div>
           ))}

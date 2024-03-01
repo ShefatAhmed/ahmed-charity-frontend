@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useAddAVolunteerMutation } from "../../redux/features/volunteer/volunteerApi";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Volunteer = () => {
   const initialFormData = {
@@ -17,11 +19,23 @@ const Volunteer = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    addVolunteer(formData);
-
-    setFormData(initialFormData);
+    try {
+      await addVolunteer(formData);
+      Swal.fire({
+        icon: "success",
+        title: "Volunteer Sign-up Successful",
+        text: "Thank you for signing up as a volunteer!",
+      });
+      setFormData(initialFormData);
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "There was an error signing up as a volunteer. Please try again.",
+      });
+    }
   };
 
   const divisions = [
@@ -102,6 +116,13 @@ const Volunteer = () => {
         >
           Sign Up
         </button>
+        <hr className="mt-5" />
+        <p className="text-center mt-5">
+          our volunteer list{" "}
+          <Link to="/about-us" className="text-red-500 underline font-bold">
+            here...
+          </Link>
+        </p>
       </form>
     </div>
   );

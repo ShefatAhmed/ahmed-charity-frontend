@@ -67,6 +67,13 @@ const Navbar = () => {
         >
           Community
         </NavLink>
+        <NavLink
+          to="/volunteer"
+          onClick={toggleClose}
+          className="hover:underline"
+        >
+          Volunteer
+        </NavLink>
         {token && (
           <NavLink
             to="/dashboard"
@@ -76,13 +83,6 @@ const Navbar = () => {
             Dashboard
           </NavLink>
         )}
-        <NavLink
-          to="/volunteer"
-          onClick={toggleClose}
-          className="hover:underline"
-        >
-          Volunteer
-        </NavLink>
         <label className="swap swap-rotate">
           <input
             type="checkbox"
@@ -176,6 +176,13 @@ const Navbar = () => {
           >
             Community
           </NavLink>
+          <NavLink
+            to="/volunteer"
+            onClick={toggleClose}
+            className="block px-4 py-2 text-gray-800 hover:bg-gray-200 font-extrabold"
+          >
+            Volunteer
+          </NavLink>
           {token && (
             <NavLink
               to="/dashboard"
@@ -185,13 +192,6 @@ const Navbar = () => {
               Dashboard
             </NavLink>
           )}
-          <NavLink
-            to="/volunteer"
-            onClick={toggleClose}
-            className="block px-4 py-2 text-gray-800 hover:bg-gray-200 font-extrabold"
-          >
-            Volunteer
-          </NavLink>
           {token ? (
             <button
               onClick={handleLogout}

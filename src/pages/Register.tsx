@@ -3,19 +3,35 @@ import { FieldValues, useForm } from "react-hook-form";
 import { useAppDispatch } from "../redux/hooks";
 import { regisTer } from "../redux/features/register/registerSlice";
 import { useRegisterMutation } from "../redux/features/register/registerApi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Register = () => {
+  const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm();
   const [mutate] = useRegisterMutation();
   const dispatch = useAppDispatch();
 
   const onSubmit = async (data: FieldValues) => {
-    const response = await mutate(data);
-    //@ts-ignore
-    const { name, email, password } = response.data;
-    dispatch(regisTer({ name, email, password }));
-    reset();
+    try {
+      const response = await mutate(data);
+      //@ts-ignore
+      const { name, email, password } = response.data;
+      dispatch(regisTer({ name, email, password }));
+      reset();
+      Swal.fire({
+        icon: "success",
+        title: "Registration Successful",
+        text: "You have successfully registered. Please login.",
+      });
+      navigate("/login");
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Registration Failed",
+        text: "Registration unsuccessful. Please try again.",
+      });
+    }
   };
   return (
     <div className="flex items-center justify-center h-screen">

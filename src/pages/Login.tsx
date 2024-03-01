@@ -5,25 +5,38 @@ import { useAppDispatch } from "../redux/hooks";
 import { setUser } from "../redux/features/auth/authSlice";
 import { verifyToken } from "../utils/verifyToken";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { register, handleSubmit } = useForm();
-  const [login, { data, error }] = useLoginMutation();
-  console.log(data);
-  console.log(error);
+  const [login] = useLoginMutation();
   const onSubmit = async (data: FieldValues) => {
-    const userInfo = {
-      email: data.email,
-      name: data.name,
-      amount: data.amount,
-      password: data.password,
-    };
-    const res = await login(userInfo).unwrap();
-    const user = verifyToken(res.token);
-    dispatch(setUser({ user: user, token: res.token }));
-    navigate("/");
+    try {
+      const userInfo = {
+        email: data.email,
+        name: data.name,
+        amount: data.amount,
+        password: data.password,
+      };
+      const res = await login(userInfo).unwrap();
+      const user = verifyToken(res.token);
+      dispatch(setUser({ user: user, token: res.token }));
+      Swal.fire({
+        icon: "success",
+        title: "Login Successful",
+        text: "You have successfully logged in.",
+      });
+
+      navigate("/");
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Login Failed",
+        text: "Invalid email or password. Please try again.",
+      });
+    }
   };
   return (
     <div className="flex items-center justify-center h-screen">

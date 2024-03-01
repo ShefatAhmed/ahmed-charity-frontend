@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAddTestimonialMutation } from "../../../redux/features/testimonial/testimonialApi";
+import Swal from "sweetalert2";
 
 const CreateTestimonial = () => {
   const [name, setName] = useState("");
@@ -11,7 +12,6 @@ const CreateTestimonial = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
     try {
       const response = await addTestimonial({
         name,
@@ -19,14 +19,22 @@ const CreateTestimonial = () => {
         amount,
         description,
       });
-
-      console.log("Testimonial added successfully:", response);
+      console.log(response);
+      Swal.fire({
+        icon: "success",
+        title: "Testimonial Added",
+        text: "Your testimonial has been added successfully.",
+      });
       setName("");
       setImage("");
       setAmount("");
       setDescription("");
     } catch (error) {
-      console.error("Error adding testimonial:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "There was an error adding your testimonial. Please try again.",
+      });
     }
   };
   return (

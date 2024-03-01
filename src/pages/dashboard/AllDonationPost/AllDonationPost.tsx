@@ -7,6 +7,7 @@ import {
   useDeleteDonationMutation,
   useUpdateDonationMutation,
 } from "../../../redux/features/donation/donationApi";
+import Swal from "sweetalert2";
 
 type TDonation = {
   _id: string | null | undefined;
@@ -72,8 +73,17 @@ const AllDonationPost = () => {
         await deleteDonationMutation[0](selectedDonation._id!);
         handleCloseModal();
         refetch();
+        Swal.fire({
+          icon: "success",
+          title: "Deletion Successful",
+          text: "The donation post has been deleted successfully.",
+        });
       } catch (error) {
-        alert(error);
+        Swal.fire({
+          icon: "error",
+          title: "Deletion Failed",
+          text: "There was an error deleting the donation post. Please try again.",
+        });
       }
     }
   };
@@ -87,8 +97,17 @@ const AllDonationPost = () => {
         });
         handleCloseEditModal();
         refetch();
+        Swal.fire({
+          icon: "success",
+          title: "Update Successful",
+          text: "The donation post has been updated successfully.",
+        });
       } catch (error) {
-        alert(error);
+        Swal.fire({
+          icon: "error",
+          title: "Update Failed",
+          text: "There was an error updating the donation post. Please try again.",
+        });
       }
     }
   };

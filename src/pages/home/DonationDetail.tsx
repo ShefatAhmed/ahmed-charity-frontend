@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useGetAllDonationQuery } from "../../redux/features/donation/donationApi";
 import { useState } from "react";
 import Modal from "react-modal";
@@ -9,6 +9,7 @@ import {
   useCurrentToken,
 } from "../../redux/features/auth/authSlice";
 import { useUpdateUserMutation } from "../../redux/features/auth/authApi";
+import Swal from "sweetalert2";
 const modalStyles = {
   content: {
     width: "300px",
@@ -41,18 +42,24 @@ const DonationDetail = () => {
 
   const handleConfirmDonate = async () => {
     const newAmount = amount + donation.amount;
-    console.log(amount);
     try {
       const { data: updatedUserData }: any = await updateUserMutation({
         email: userData?.email,
         amount: newAmount,
       });
-      console.log("Updated User Data:", updatedUserData);
-
       dispatch(setUser({ user: updatedUserData, token: token }));
       setConfirmationModalOpen(false);
+      Swal.fire({
+        icon: "success",
+        title: "Donation Successful!",
+        text: `Thank you for your donation to ${donation.title}.`,
+      });
     } catch (error) {
-      console.error("Error updating user:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Something went wrong. Please try again later.",
+      });
     }
   };
 
@@ -145,7 +152,7 @@ const DonationDetail = () => {
                   onClick={handleConfirmDonate}
                   className="glass bg-teal-500 rounded-lg text-white px-10 hover:bg-teal-800 text-lg"
                 >
-                  <Link to="/dashboard">Yes, Donate Now</Link>
+                  <>Yes, Donate Now</>
                 </button>
               </div>
               <h1 className="text-center">or</h1>

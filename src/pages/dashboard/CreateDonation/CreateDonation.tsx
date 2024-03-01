@@ -5,6 +5,7 @@ import {
   useGetAllDonationQuery,
 } from "../../../redux/features/donation/donationApi";
 import { createDonation } from "../../../redux/features/donation/donationSlice";
+import Swal from "sweetalert2";
 
 const CreateDonation = () => {
   const dispatch = useAppDispatch();
@@ -32,7 +33,11 @@ const CreateDonation = () => {
       const { data }: any = await createDonationMutation(formData);
       dispatch(createDonation(data));
       refetchDonations();
-
+      Swal.fire({
+        icon: "success",
+        title: "Donation Added",
+        text: "Your donation has been added successfully.",
+      });
       setFormData({
         image: "",
         category: "",
@@ -41,7 +46,11 @@ const CreateDonation = () => {
         description: "",
       });
     } catch (error) {
-      console.error("Error creating donation:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "There was an error adding your donation. Please try again.",
+      });
     }
   };
 
