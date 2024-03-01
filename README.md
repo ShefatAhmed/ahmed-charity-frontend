@@ -18,7 +18,7 @@ Navigate to the cloned directories in your terminal.
 Run the following command in both the frontend and server directories:
 
 ```bash
-npm i -y
+npm install
 ```
 
 ### 4. Run Development Server
