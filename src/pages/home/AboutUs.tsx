@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 const AboutUs = () => {
   const [donationArea, setDonationArea] = useState(0);
   const [honourableDonner, setHonourableDonner] = useState(0);
@@ -97,6 +98,14 @@ const AboutUs = () => {
             </h1>
             <p className="uppercase font-medium">Divisional center</p>
           </div>
+        </div>
+        <div className="mt-10">
+          <Link
+            to="/about-us"
+            className="btn glass bg-teal-500 rounded-lg text-white px-10 hover:bg-teal-800 text-lg"
+          >
+            Our Volunteer
+          </Link>
         </div>
       </motion.div>
     </div>

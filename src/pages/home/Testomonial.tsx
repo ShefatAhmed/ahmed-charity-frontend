@@ -14,7 +14,6 @@ const Testomonial = () => {
     pauseOnHover: true,
   };
   const { data: testimonials } = useGetAllTestimonialQuery(undefined);
-  console.log(testimonials);
   if (!testimonials) {
     return <p>No testimonials available</p>;
   }

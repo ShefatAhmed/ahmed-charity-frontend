@@ -13,6 +13,8 @@ import ProtectedRoute from "../components/layout/ProtectedRoute";
 import Leaderboard from "../pages/Leaderboard/Leaderboard";
 import Community from "../pages/Community/Community";
 import CreateTestimonial from "../pages/dashboard/CreateTestimonial/CreateTestimonial";
+import AboutUs from "../pages/AboutUs/AboutUs";
+import Volunteer from "../pages/Volunteer/Volunteer";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +44,14 @@ const router = createBrowserRouter([
       {
         path: "/community",
         element: <Community />,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
+      },
+      {
+        path: "/volunteer",
+        element: <Volunteer />,
       },
       {
         path: "/register",
