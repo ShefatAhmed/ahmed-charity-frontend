@@ -6,6 +6,7 @@ import {
   TwitterIcon,
   YoutubeIcon,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -29,25 +30,31 @@ const Footer = () => {
         <div className="col-span-3 p-5">
           <h1 className="font-extrabold text-xs">BLOGROLL</h1>
           <ul className="flex flex-col gap-5 mt-5">
-            <li className="hover:text-teal-300 flex text-xs items-center">
-              <ArrowBigRight />
-              Become a volunteer
-            </li>
+            <Link to="/volunteer">
+              <li className="hover:text-teal-300 flex text-xs items-center">
+                <ArrowBigRight />
+                Become a volunteer
+              </li>
+            </Link>
             <hr className="bg-white" />
-            <li className="hover:text-teal-300 flex text-xs items-center">
-              <ArrowBigRight />
-              Our mission
-            </li>
+            <Link to="about-us">
+              <li className="hover:text-teal-300 flex text-xs items-center">
+                <ArrowBigRight />
+                Our mission
+              </li>
+            </Link>
             <hr className="bg-white" />
-            <li className="hover:text-teal-300 flex text-xs items-center">
-              <ArrowBigRight />
-              Success stories
-            </li>
+            <Link to="/community">
+              <li className="hover:text-teal-300 flex text-xs items-center">
+                <ArrowBigRight />
+                Success stories
+              </li>
+            </Link>
             <hr className="bg-white" />
-            <li className="hover:text-teal-300 flex text-xs items-center">
-              <ArrowBigRight />
-              Meet our team
-            </li>
+              <li className="hover:text-teal-300 flex text-xs items-center">
+                <ArrowBigRight />
+                Meet our team
+              </li>
             <hr className="bg-white" />
           </ul>
         </div>
